@@ -1,10 +1,17 @@
+import React from 'react';
 import { Box, Image, useColorModeValue, Flex } from '@chakra-ui/react';
 import { BiBookAdd } from 'react-icons/bi';
 
 export default function Card({ article }) {
+  const [data, setData] = React.useState([]);
   const dataLocal = JSON.parse(localStorage.getItem('bookmark'));
-  const handleBokmark = book => {
-    localStorage.setItem('bookmark', JSON.stringify(dataLocal, book));
+  // console.log({ dataLocal });
+  const arr = [];
+  const handleBookmark = book => {
+    // setData([book]);
+    // setData(prevData => [...prevData, book]);
+    arr.push(book);
+    localStorage.setItem('bookmark', JSON.stringify(arr));
   };
   return (
     <Box
@@ -47,7 +54,7 @@ export default function Card({ article }) {
             <BiBookAdd
               width={5}
               height={5}
-              onClick={() => handleBokmark(article)}
+              onClick={() => handleBookmark(article)}
             />
           </Flex>
         </Box>
